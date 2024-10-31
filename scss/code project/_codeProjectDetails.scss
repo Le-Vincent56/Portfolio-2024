@@ -1,0 +1,159 @@
+.project-details-wrapper {
+    font-size: 1.875rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+
+    @media (min-width: 768px) and (max-width: 992px) {
+        font-size: 2.8125rem;
+    }
+
+    @media (min-width: 320px) and (max-width: 768px) {
+        font-size: 3.75rem;
+    }
+}
+
+.project-details {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 320px) and (max-width: 992px) {
+        width: 100%;
+    }
+
+    .section-node {
+        display: flex;
+        flex-direction: column;
+
+        .section-node-header {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: rgb(52, 52, 52);
+        }
+
+        .section-node-header:hover::before {
+            opacity: 1;
+        }
+
+        .section-node-header::before,
+        .section-node-header > .section-node-header-border {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            content: "";
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .section-node-header::before {
+            background: radial-gradient(
+                800px circle at var(--mouse-x) var(--mouse-y),
+                rgba(255, 255, 255, 0.06),
+                transparent 40%
+            );
+            z-index: 3;
+        }
+
+        .section-node-header > .section-node-header-border {
+            background: radial-gradient(
+                400px circle at var(--mouse-x) var(--mouse-y),
+                rgba(255, 255, 255, 0.3),
+                transparent 40%
+            );
+            z-index: 1;
+        }
+
+        .section-node-header > .section-node-header-content {
+            background: linear-gradient(
+                to right,
+                #242424 0%,
+                #282828 33%,
+                #282828 67%,
+                #242424 100%
+            );
+            height: calc(100% - 2px);
+            width: calc(100% - 40px);
+            position: relative;
+            z-index: 2;
+            display: flex;
+        }
+
+        .section-node-header-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 20px;
+            padding-right: 20px;
+
+            h1 {
+                font-size: 1.1667em;
+            }
+
+            .section-node-header-icon {
+                width: 1em;
+                height: 1em;
+                transition: transform 0.3s ease-out;
+            }
+        }
+
+        &[data-expanded='true'] .section-node-header-icon {
+            transform: rotate(-180deg);
+        }
+
+        .section-node-content {
+            overflow: hidden;
+            padding: 10px 3em;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .project-subsection-image {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 30px;
+            
+                .project-subsection-image-details {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    height: auto;
+            
+                    img {
+                        width: 100%;
+                        align-self: center;
+                        object-fit: cover;
+                    }
+                    
+                    .project-subsection-image-attribution {
+                        color: rgba(255, 255, 255, 0.41);
+                        font-weight: 250;
+                        font-size: 0.5em;
+                        margin: 5px;
+                        align-self: flex-start;
+                    }
+                }
+            }
+
+            h1 {
+                font-size: 1em;
+            }
+
+            p, li {
+                color: rgba(255, 255, 255, 0.85);
+                font-size: 0.6667em;
+                font-weight: 300;
+            }
+        }
+    }
+
+    .section-node:hover > .section-node-header > .section-node-header-border {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,67 @@
+@use '../portfolio';
+@use '../palette';
+@use 'codeProjects';
+@use 'audioProjects';
+
+$selected-opacity: 100%;
+$unselected-opacity: 41%; 
+
+#projects {
+    font-size: 3.75rem;
+    display: flex;
+    flex-direction: column;
+    padding: 80px 15rem 80px 15rem;
+
+    #projects-header {
+        height: 70px;
+        gap: 0.5em;
+        margin: 1em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-content: center;
+
+        #projects-header-text {
+            flex-grow: 0.67;
+            display: flex;
+            align-items: center;
+
+            h1 {
+                font-size: 1em;
+                font-weight: bold;
+            }
+        }
+
+        #projects-header-navigation {
+            flex-grow: 0.33;
+            display: flex;
+            gap: 0.5em;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            .nav-button {
+                cursor: pointer;
+
+                h2 {
+                    font-size: 0.67em;
+                    font-weight: 350;
+                    opacity: $unselected-opacity;
+                    transition: opacity 0.3s ease;
+
+                    &:hover {
+                        opacity: $selected-opacity;
+                    }
+                }
+
+                &.selected h2 {
+                    opacity: $selected-opacity;
+                }
+
+                &:not(.selected) h2 {
+                    opacity: $unselected-opacity;
+                }
+            }
+        }
+    }
+}

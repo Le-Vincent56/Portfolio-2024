@@ -1,0 +1,150 @@
+@use '../portfolio';
+@use '../palette';
+
+#about-section {
+    display: flex;
+    justify-content: center;
+    font-size: 8.75rem;
+    height: 880px;
+    background: linear-gradient(
+        to bottom, 
+        palette.$background-gradient-top 50%, 
+        palette.$background-gradient-bottom 100%
+    );
+
+    #about-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+
+        #about-text {
+            display: flex;
+            justify-content: center;
+            width: 60%;
+
+            #about-text-content {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+
+                h1 {
+                    font-size: 1em;
+                    margin-bottom: 0;
+                    font-weight: bold;
+                }
+                
+                h2 {
+                    margin-top: 0;
+                    margin-bottom: 1.3em;
+                    font-size: 0.286em;
+                    font-weight: 350;
+                    text-shadow: 0px 4px 4px #1c1c1c;
+                    height: 0.3357em;
+                    color: palette.$secondary-color;
+
+                    display: inline-block;
+                    position: relative;
+
+                    &:after {
+                        content: '|';
+                        position: absolute;
+                        right: -0.375em;
+                        top: -0.0625em;
+                        animation: blink 0.5s ease-in-out infinite;
+                        font-weight: 250;
+                        font-size: 1em;
+                        color: palette.$secondary-color;
+                    }
+                }
+    
+                #icons {
+                    display: flex;
+                    gap: 15px;
+    
+                    .icon-container {
+                        background-color: #606060;
+                        border-radius: 50%;
+                        width: 0.4em;
+                        height: 0.4em;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        transition: all 0.15s ease-in-out;
+                        box-shadow: 0px 0px 0.2149em #212121;
+                        cursor: pointer;
+    
+                        &:hover {
+                            background-color: palette.$primary-color;
+                            transform: scale(1.1);
+    
+                            .icon {
+                                color: palette.$background-gradient-bottom;
+                                transform: scale(1.1);
+                            }
+                        }
+    
+                        .icon {
+                            width: 0.2em;
+                            height: auto;
+                            transition: color 1.0s transform 1.0s ease-in-out;
+                        }
+                    }
+                }
+
+                @media(min-width: 320px) and (max-width: 768px) {
+                    align-items: center;
+                }
+            }
+
+            @media(min-width: 320px) and (max-width: 768px) {
+                height: 20%;
+                align-items: flex-end;
+            }
+        }
+
+        @media (min-width: 320px) and (max-width: 768px) {
+            flex-direction: column; // Change flex direction to column for narrow screens
+            align-items: center; // Adjust alignment if needed
+        }
+
+        #about-vertical-line {
+            width: 3px;
+            background-color: palette.$primary-color;
+            height: 5.1429em;
+            margin: 0 2.5%;
+
+            @media (min-width: 320px) and (max-width: 768px) {
+                width: 5.1429em;
+                height: 3px;
+                margin: 10% 0;
+            }
+        }
+
+        #about-image {
+            width: 35%;
+            text-align: center;
+
+            img {
+                max-width: 3em;
+                height: auto;
+                border-radius: 10px;
+                box-shadow: 0px 4px 4px #121212;
+
+                // @media(min-width: 320px) and (max-width: 768px) {
+                //     max-width: 4em;
+                // }
+            }
+
+            @media(min-width: 320px) and (max-width: 768px) {
+                height: 35%;
+            }
+        }
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
