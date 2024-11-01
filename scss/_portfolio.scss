@@ -1,0 +1,79 @@
+@use 'palette';
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    color: palette.$primary-color;
+    background-color: palette.$background-gradient-bottom;
+    font-family: palette.$main-font;
+    font-size: 16px;
+
+    p, li {
+        font-family: palette.$paragraph-font;
+    }
+}
+
+/* Target webkit browsers like Chrome, Safari, and Edge */
+body {
+    scrollbar-width: thin; // Firefox property for thin scrollbar
+    scrollbar-color: #555 transparent; // Scroll thumb color and track color
+}
+  
+/* Custom scrollbar styles for WebKit browsers */
+body::-webkit-scrollbar {
+    width: 12px; // Width of the scrollbar for vertical scrolling
+}
+  
+body::-webkit-scrollbar-track {
+    background-color: transparent; // Dark background color for the scrollbar track
+    border-radius: 6px;
+}
+  
+body::-webkit-scrollbar-thumb {
+    background-color: #555; // Lighter color for the scrollbar thumb
+    border-radius: 6px;
+    border: 3px solid transparent;
+}
+  
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #666; // Slightly lighter shade on hover
+}
+
+@media (min-width: 320px) {
+    html, body {
+        font-size: 4px;
+    }
+}
+
+@media (min-width: 480px) {
+    html, body {
+        font-size: 6px;
+    }
+}
+
+@media (min-width: 768px) {
+    html, body {
+        font-size: 9px;
+    }
+}
+
+@media (min-width: 992px) {
+    html, body {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 1200px) {
+    html, body {
+        font-size: 14px;
+    }
+}
+
+@media(min-width: 1400px) {
+    html, body {
+        font-size: 16px;
+    }
+}
