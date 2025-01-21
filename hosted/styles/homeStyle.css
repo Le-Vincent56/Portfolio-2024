@@ -511,7 +511,7 @@ body::-webkit-scrollbar-thumb:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: -32px center;
+  object-position: center center;
 }
 #audio-projects-list .audio-project-node .audio-project-node-thumbnail .audio-project-node-overlay {
   position: absolute;
