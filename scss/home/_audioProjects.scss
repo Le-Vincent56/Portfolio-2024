@@ -2,12 +2,16 @@
 @use '../palette';
 @use 'audioPlayer';
 
+#audio-projects {
+    margin: 1em;
+    justify-content: center;
+}
+
 #audio-projects-list {
     font-size: 1.6875rem;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1.25rem;
+    gap: 3.9062rem;
     align-items: start;
     min-height: 400px;
     margin-bottom: 100px;
