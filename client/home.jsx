@@ -106,12 +106,12 @@ const Projects = () => {
                     >
                         <motion.h2>AUDIO</motion.h2>
                     </motion.div>
-                    {/* <motion.div
+                    <motion.div
                     className={`nav-button ${activeTab === 2 ? 'selected' : ''}`}
                     onClick={() => handleNavClick(2)}
                     >
                         <motion.h2>WRITING</motion.h2>
-                    </motion.div> */}
+                    </motion.div>
                 </motion.div>
             </VerticalReveal>
             <motion.div id='projects-content'>
@@ -138,7 +138,7 @@ const Projects = () => {
                             <AudioProjects />
                         </motion.div>
                     )}
-                    {/* {activeTab === 2 && (
+                    {activeTab === 2 && (
                         <motion.div
                             key="writing"
                             initial={{ opacity: 0 }}
@@ -148,7 +148,7 @@ const Projects = () => {
                         >
                             <WritingProjects />
                         </motion.div>
-                    )} */}
+                    )}
                 </AnimatePresence>
             </motion.div>
         </motion.div>
@@ -276,8 +276,52 @@ const AudioProjects = () => {
 }
 
 const WritingProjects = () => {
+    const [projects, setProjects] = useState([]);
+
+    // Load the Writing projects in from the server
+    useEffect(() => {
+        const loadProjectsFromServer = async () => {
+            const response = await fetch(`/getWritingProjects`);
+            const data = await response.json();
+            setProjects(data.projects);
+        };
+        loadProjectsFromServer();
+    }, []);
+
+    // Present the appropriate HTML if no projects are loaded
+    if(projects.length === 0) {
+        return (
+            <motion.div id='writing-projects'>
+                <motion.h1 id='empty-writing-projects'>No Writing Projects Yet!</motion.h1>
+            </motion.div>
+        );
+    }
+
+    // Create a node for each project
+    const projectNodes = projects.map(project => {
+
+        // Create the role string
+        let genreString = project.genres.join(', ');
+
+        return (
+            <StaticReveal id={project.id} className='writing-project-node' list={false}
+            onClick={(e) => readProject(e, project.title, project.id)}>
+                <motion.div className='writing-project-node-background' onClick={(e) => readProject(e, project.title, project.id)}>
+                    <motion.img src={`assets/img/writing/${project.imageURL}`} className='writing-project-image'/>
+                    <motion.div className='writing-project-overlay'/>
+                </motion.div>
+                <motion.div className='writing-project-node-info' onClick={(e) => readProject(e, project.title, project.id)}>
+                    <motion.h1 className='writing-project-node-title'>{project.title}</motion.h1>
+                    <motion.h2 className='writing-project-node-genres'>{genreString}</motion.h2>
+                </motion.div>
+            </StaticReveal>
+        )
+    });
+
     return (
-        <motion.div id='writing-projects'></motion.div>
+        <StaticReveal id='writing-projects' list={true}>
+            {projectNodes}
+        </StaticReveal>
     );
 }
 

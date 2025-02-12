@@ -1,0 +1,53 @@
+@use '../portfolio';
+@use '../palette';
+
+#writing-projects {
+    font-size: 3.125rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 2em;
+
+    .writing-project-node {
+        width: 22.321rem;
+        height: 33.482rem;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+            .writing-project-overlay {
+                animation: overlayExpand 0.25s forwards ease-out;
+            }
+
+            .writing-project-image {
+                transform: scale(1.1);
+            }
+
+            .writing-project-node-title,
+            .writing-project-node-genres {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    }
+}
+
+.writing-project-node-background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.writing-project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    transform: scale(1);
+}

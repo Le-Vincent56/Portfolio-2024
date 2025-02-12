@@ -9,6 +9,7 @@ const router = (app) =>
 
     app.get('/getAudioProjects', controllers.Audio.getAudioProjects);
     app.get('/getCodeProjects', controllers.Code.getCodeProjects);
+    app.get('/getWritingProjects', controllers.Writing.getWritingProjects);
 
     app.get('/getCodePage', controllers.Code.getCodePage);
     app.get('/codeProject', controllers.Code.loadCodePage);

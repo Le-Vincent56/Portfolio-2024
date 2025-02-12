@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "Nobel Bold";
+  src: url("/assets/fonts/NobelUno-Bold.woff") format("woff"), url("/assets/fonts/NobelUno-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Nobel Regular";
+  src: url("/assets/fonts/NobelUno-Regular.woff") format("woff"), url("/assets/fonts/NobelUno-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Nobel Light";
+  src: url("/assets/fonts/NobelUno-Light.woff") format("woff"), url("/assets/fonts/NobelUno-Light.ttf") format("truetype");
+}
 html, body {
   height: 100%;
   width: 100%;
@@ -6,11 +18,11 @@ html, body {
   overflow-x: hidden;
   color: #FFFFFF;
   background-color: #242424;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: "Nobel Bold";
   font-size: 16px;
 }
 html p, html li, body p, body li {
-  font-family: "Roboto", sans-serif;
+  font-family: "Nobel Regular";
 }
 
 /* Target webkit browsers like Chrome, Safari, and Edge */

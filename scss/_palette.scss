@@ -2,7 +2,26 @@ $background-gradient-top: #333333;
 $background-gradient-bottom: #242424;
 $primary-color: #FFFFFF;
 $secondary-color: #CACACA;
-$main-font: "Roboto Condensed", sans-serif;
-$paragraph-font: "Roboto", sans-serif;
+$main-font: "Nobel Bold";
+$paragraph-font: "Nobel Regular";
 $error-color: #a30f05;
 $success-color: #04cc1b;
+
+@font-face {
+    font-family: 'Nobel Bold';
+    src: url('/assets/fonts/NobelUno-Bold.woff') format('woff'),
+        url('/assets/fonts/NobelUno-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Nobel Regular';
+    src: url('/assets/fonts/NobelUno-Regular.woff') format('woff'),
+        url('/assets/fonts/NobelUno-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Nobel Light';
+    src: url('/assets/fonts/NobelUno-Light.woff') format('woff'),
+        url('/assets/fonts/NobelUno-Light.ttf') format('truetype');
+}
+
