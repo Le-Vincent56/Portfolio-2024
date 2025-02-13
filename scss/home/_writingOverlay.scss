@@ -1,0 +1,126 @@
+@use '../portfolio';
+@use '../palette';
+
+#writing-overlay {
+    font-size: 1.875rem;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    background-color: black;
+    left: 0;
+    top: 0;
+    z-index: 1;
+
+    .overlay-exit-button {
+        position: absolute;
+        right: 2.1333em;
+        top: 1.6em;
+        width: 1.3333em;
+        height: 1.3333em;
+        cursor: pointer;
+        transform: rotate(0deg);
+        transition: all 0.5s ease-out;
+        border-radius: 50%;
+        background-color: palette.$primary-color;
+        color: palette.$background-gradient-bottom;
+        box-shadow: 0px 0px 0.1146em #212121;
+        opacity: 90%;
+
+        .overlay-exit-icon {
+            position: relative;
+            top: 25%;
+            left: 25%;
+            width: 50%;
+            height: 50%;
+        }
+    }
+
+    .overlay-exit-button:hover {
+        transform: rotate(180deg);
+        transition: all 0.5s ease-out;
+        background-color: palette.$background-gradient-bottom;
+        color: palette.$primary-color;
+    }
+
+    .writing-project-overlay-info {
+        margin-top: 5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .writing-project-overlay-title {
+            font-size: 1.5em;
+            margin: 0;
+        }
+    
+        .writing-project-overlay-type {
+            font-size: 1em;
+            color: palette.$secondary-color;
+            margin: 0.25em 0 1.5em 0;
+        }
+    
+        .writing-project-overlay-image {
+            width: 14.2854em;
+            height: 21.4284em;
+    
+            img {
+                width: 100%;
+                align-self: center;
+                object-fit: cover;
+            }
+    
+            .writing-project-overlay-image-attribution {
+                color: rgba(255, 255, 255, 0.41);
+                font-weight: 250;
+                font-size: 0.5em;
+                margin: 5px;
+                align-self: flex-start;
+            }
+        }
+
+        .writing-project-overlay-genres {
+            font-size: 1em;
+        }
+
+        .writing-project-overlay-about {
+            font-size: 0.7em;
+            width: 50%;
+            margin: 1em 0 0.25em 0;
+        }
+
+        .writing-project-overlay-src {
+            font-size: 1rem;
+            margin: 2em 0 2em 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            cursor: pointer;
+            text-align: center;
+
+            .writing-project-overlay-src-content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 62px;
+                width: 200px;
+                border-radius: 10px;
+                color: palette.$primary-color;
+                background-color: rgb(25, 25, 25);
+                border: 1px solid palette.$primary-color;
+                box-shadow: 0px 0px 3px 5px rgba(25, 25, 25, 0.327);
+                transition: all 0.2s ease;
+
+                &:hover {
+                    background-color: palette.$primary-color;
+                    border: 1px solid palette.$background-gradient-bottom;
+                    color: rgb(25, 25, 25);
+                }
+            }
+        }
+
+        span {
+            font-family: palette.$paragraph-font;
+        }
+    }
+}

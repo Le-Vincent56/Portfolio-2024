@@ -22,7 +22,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 
             .code-project-overlay {
-                animation: overlayExpand 0.25s forwards ease-out;
+                animation: overlayExpandWidth 0.25s forwards ease-out;
             }
 
             .code-project-image {
@@ -91,7 +91,7 @@
     font-family: palette.$paragraph-font;
 }
 
-@keyframes overlayExpand {
+@keyframes overlayExpandWidth {
     0% {
         width: 0;
         opacity: 0.6;

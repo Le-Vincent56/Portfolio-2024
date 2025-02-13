@@ -10,6 +10,10 @@
   font-family: "Nobel Light";
   src: url("/assets/fonts/NobelUno-Light.woff") format("woff"), url("/assets/fonts/NobelUno-Light.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Nobel Semibold";
+  src: url("/assets/fonts/NobelUno-SemiBold.woff") format("woff"), url("/assets/fonts/NobelUno-SemiBold.ttf") format("truetype");
+}
 html, body {
   height: 100%;
   width: 100%;
@@ -22,7 +26,7 @@ html, body {
   font-size: 16px;
 }
 html p, html li, body p, body li {
-  font-family: "Nobel Regular";
+  font-family: "Nobel Semibold";
 }
 
 /* Target webkit browsers like Chrome, Safari, and Edge */
@@ -231,7 +235,7 @@ body::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 #code-projects .code-project-node:hover .code-project-overlay {
-  animation: overlayExpand 0.25s forwards ease-out;
+  animation: overlayExpandWidth 0.25s forwards ease-out;
 }
 #code-projects .code-project-node:hover .code-project-image {
   transform: scale(1.1);
@@ -292,10 +296,10 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: 0.6em;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.6);
-  font-family: "Nobel Regular";
+  font-family: "Nobel Semibold";
 }
 
-@keyframes overlayExpand {
+@keyframes overlayExpandWidth {
   0% {
     width: 0;
     opacity: 0.6;
@@ -614,14 +618,14 @@ body::-webkit-scrollbar-thumb:hover {
 
 #writing-projects {
   font-size: 3.125rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 2em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  margin: 0 2em 0 2em;
 }
 #writing-projects .writing-project-node {
-  width: 22.321rem;
-  height: 33.482rem;
+  width: 7.1427em;
+  height: 10.7142em;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
@@ -631,7 +635,7 @@ body::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 #writing-projects .writing-project-node:hover .writing-project-overlay {
-  animation: overlayExpand 0.25s forwards ease-out;
+  animation: overlayExpandHeight 0.25s forwards ease-out;
 }
 #writing-projects .writing-project-node:hover .writing-project-image {
   transform: scale(1.1);
@@ -655,6 +659,163 @@ body::-webkit-scrollbar-thumb:hover {
   object-fit: cover;
   transition: transform 0.3s ease;
   transform: scale(1);
+}
+
+.writing-project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.writing-project-node-info {
+  position: absolute;
+  top: 0.4em;
+  left: 0.4em;
+  z-index: 2;
+}
+
+.writing-project-node-title, .writing-project-node-genres {
+  margin: 0;
+  transform: translateY(-30px);
+  transition: opacity 0.15s ease, transform 0.3s ease;
+  opacity: 0;
+}
+
+.writing-project-node-title {
+  font-size: 0.8em;
+  font-weight: 300;
+  color: #FFFFFF;
+}
+
+.writing-project-node-genres {
+  font-size: 0.5em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: "Nobel Semibold";
+}
+
+@keyframes overlayExpandHeight {
+  0% {
+    height: 0;
+    opacity: 0.6;
+  }
+  100% {
+    height: 100%;
+    opacity: 0.6;
+  }
+}
+#writing-overlay {
+  font-size: 1.875rem;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  background-color: black;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+#writing-overlay .overlay-exit-button {
+  position: absolute;
+  right: 2.1333em;
+  top: 1.6em;
+  width: 1.3333em;
+  height: 1.3333em;
+  cursor: pointer;
+  transform: rotate(0deg);
+  transition: all 0.5s ease-out;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  color: #242424;
+  box-shadow: 0px 0px 0.1146em #212121;
+  opacity: 90%;
+}
+#writing-overlay .overlay-exit-button .overlay-exit-icon {
+  position: relative;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+}
+#writing-overlay .overlay-exit-button:hover {
+  transform: rotate(180deg);
+  transition: all 0.5s ease-out;
+  background-color: #242424;
+  color: #FFFFFF;
+}
+#writing-overlay .writing-project-overlay-info {
+  margin-top: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#writing-overlay .writing-project-overlay-info .writing-project-overlay-title {
+  font-size: 1.5em;
+  margin: 0;
+}
+#writing-overlay .writing-project-overlay-info .writing-project-overlay-type {
+  font-size: 1em;
+  color: #CACACA;
+  margin: 0.25em 0 1.5em 0;
+}
+#writing-overlay .writing-project-overlay-info .writing-project-overlay-image {
+  width: 14.2854em;
+  height: 21.4284em;
+}
+#writing-overlay .writing-project-overlay-info .writing-project-overlay-image img {
+  width: 100%;
+  align-self: center;
+  object-fit: cover;
+}
+#writing-overlay .writing-project-overlay-info .writing-project-overlay-image .writing-project-overlay-image-attribution {
+  color: rgba(255, 255, 255, 0.41);
+  font-weight: 250;
+  font-size: 0.5em;
+  margin: 5px;
+  align-self: flex-start;
+}
+#writing-overlay .writing-project-overlay-info .writing-project-overlay-genres {
+  font-size: 1em;
+}
+#writing-overlay .writing-project-overlay-info .writing-project-overlay-about {
+  font-size: 0.7em;
+  width: 50%;
+  margin: 1em 0 0.25em 0;
+}
+#writing-overlay .writing-project-overlay-info .writing-project-overlay-src {
+  font-size: 1rem;
+  margin: 2em 0 2em 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+}
+#writing-overlay .writing-project-overlay-info .writing-project-overlay-src .writing-project-overlay-src-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 62px;
+  width: 200px;
+  border-radius: 10px;
+  color: #FFFFFF;
+  background-color: rgb(25, 25, 25);
+  border: 1px solid #FFFFFF;
+  box-shadow: 0px 0px 3px 5px rgba(25, 25, 25, 0.327);
+  transition: all 0.2s ease;
+}
+#writing-overlay .writing-project-overlay-info .writing-project-overlay-src .writing-project-overlay-src-content:hover {
+  background-color: #FFFFFF;
+  border: 1px solid #242424;
+  color: rgb(25, 25, 25);
+}
+#writing-overlay .writing-project-overlay-info span {
+  font-family: "Nobel Semibold";
 }
 
 #projects {

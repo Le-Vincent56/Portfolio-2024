@@ -3,18 +3,18 @@ const React = require('react');
 const { useEffect, useRef } = React;
 const { motion, useInView, useAnimation } = require('framer-motion');
 
-const getStaticVariant = (list) => {
+const getStaticVariant = (list, visibleOpacity) => {
     if(list) {
         return {
             hidden: { opacity: 0}, 
-            visible: { opacity: 1, transition: {
+            visible: { opacity: visibleOpacity, transition: {
                 staggerChildren: 0.2
             }}
         }
     } else {
         return {
             hidden: { opacity: 0 }, 
-            visible: { opacity: 1 }
+            visible: { opacity: visibleOpacity }
         }
     }
 }
@@ -83,7 +83,7 @@ const VerticalReveal = ({ id, children, direction, delay = 0}) => {
     )
 };
 
-const StaticReveal = ({ id, children, list, className = '', }) => {
+const StaticReveal = ({ id, children, list, className = '', visibleOpacity = 1, animationDuration = 1.5 }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
     const mainControls = useAnimation();
@@ -97,11 +97,11 @@ const StaticReveal = ({ id, children, list, className = '', }) => {
 
     return (
         <motion.div ref={ref} id={id} className={className}
-        variants={getStaticVariant(list)}
+        variants={getStaticVariant(list, visibleOpacity)}
         initial='hidden'
         animate='visible'
         transition={{ 
-            opacity: { duration: 1.5, ease: 'easeInOut' },
+            opacity: { duration: animationDuration, ease: 'easeInOut' },
         }}
         >
             {children}
@@ -109,8 +109,24 @@ const StaticReveal = ({ id, children, list, className = '', }) => {
     )
 };
 
+const Fade = ({ id, children, className = '', visibleOpacity = 1, animationDuration = 1.5}) => {
+    return (
+        <motion.div id={id} className={className}
+        initial={{opacity: 0}}
+        animate={{opacity: visibleOpacity}}
+        exit={{opacity: 0}}
+        transition={{ 
+            opacity: { duration: animationDuration, ease: 'easeInOut' },
+        }}
+        >
+            {children}
+        </motion.div>
+    )
+}
+
 module.exports = {
     HorizontalReveal,
     VerticalReveal,
-    StaticReveal
+    StaticReveal,
+    Fade
 };

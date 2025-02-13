@@ -3,7 +3,7 @@ $background-gradient-bottom: #242424;
 $primary-color: #FFFFFF;
 $secondary-color: #CACACA;
 $main-font: "Nobel Bold";
-$paragraph-font: "Nobel Regular";
+$paragraph-font: "Nobel Semibold";
 $error-color: #a30f05;
 $success-color: #04cc1b;
 
@@ -23,5 +23,11 @@ $success-color: #04cc1b;
     font-family: 'Nobel Light';
     src: url('/assets/fonts/NobelUno-Light.woff') format('woff'),
         url('/assets/fonts/NobelUno-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Nobel Semibold';
+    src: url('/assets/fonts/NobelUno-SemiBold.woff') format('woff'),
+        url('/assets/fonts/NobelUno-SemiBold.ttf') format('truetype');
 }
 

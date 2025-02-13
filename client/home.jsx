@@ -4,8 +4,8 @@ const { useState, useEffect } = React;
 const { motion, AnimatePresence } = require('framer-motion');
 const { FontAwesomeIcon } = require('@fortawesome/react-fontawesome');
 const { faGithub, faLinkedinIn, faSoundcloud } = require('@fortawesome/free-brands-svg-icons');
-const { faPlay } = require('@fortawesome/free-solid-svg-icons');
-const { HorizontalReveal, VerticalReveal, StaticReveal } = require('./components/revealComp.js');
+const { faPlay, faX } = require('@fortawesome/free-solid-svg-icons');
+const { HorizontalReveal, VerticalReveal, StaticReveal, Fade } = require('./components/revealComp.js');
 const { AudioPlayer } = require('./components/audioComp.js');
 const backendHelper = require('./backendHelper.js');
 
@@ -24,7 +24,7 @@ const About = () =>
             const isCurrentlyMobileView = window.innerWidth <= 768;
             setIsMobileView(isCurrentlyMobileView);
 
-            // Reset animatino if moving into mobile view for the first time
+            // Reset animation if moving into mobile view for the first time
             if(isCurrentlyMobileView && !playedAnimation) {
                 setPlayedAnimation(true);
             }
@@ -42,17 +42,17 @@ const About = () =>
                         <motion.h1>VINCENT LE</motion.h1>
                         <motion.h2 id='typewriter-header'>GAMEPLAY PROGRAMMER</motion.h2>
                         <motion.div id='icons'>
-                            <motion.div class='icon-container'
+                            <motion.div className='icon-container'
                             onClick={() => {window.open("https://github.com/Le-Vincent56/", "_blank")}}
                             >
                                 <FontAwesomeIcon icon={faGithub} className='icon'/>
                             </motion.div>
-                            <motion.div class='icon-container'
+                            <motion.div className='icon-container'
                             onClick={() => {window.open("https://www.linkedin.com/in/vincent-le-67266521b/", "_blank")}}
                             >
                                 <FontAwesomeIcon icon={faLinkedinIn} className='icon'/>
                             </motion.div>
-                            <motion.div class='icon-container'
+                            <motion.div className='icon-container'
                             onClick={() => {window.open("https://soundcloud.com/user-643888929", "_blank")}}
                             >
                                 <FontAwesomeIcon icon={faSoundcloud} className='icon'/>
@@ -98,7 +98,7 @@ const Projects = () => {
                     className={`nav-button ${activeTab === 0 ? 'selected' : ''}`}
                     onClick={() => handleNavClick(0)}
                     >
-                        <motion.h2>CODE</motion.h2>
+                        <motion.h2>GAMES</motion.h2>
                     </motion.div>
                     <motion.div
                     className={`nav-button ${activeTab === 1 ? 'selected' : ''}`}
@@ -275,7 +275,7 @@ const AudioProjects = () => {
     );
 }
 
-const WritingProjects = () => {
+const WritingProjectsList = ({ onClick }) => {
     const [projects, setProjects] = useState([]);
 
     // Load the Writing projects in from the server
@@ -305,12 +305,12 @@ const WritingProjects = () => {
 
         return (
             <StaticReveal id={project.id} className='writing-project-node' list={false}
-            onClick={(e) => readProject(e, project.title, project.id)}>
-                <motion.div className='writing-project-node-background' onClick={(e) => readProject(e, project.title, project.id)}>
+            onClick={(e) => onClick(e, project.title, project.id)}>
+                <motion.div className='writing-project-node-background' onClick={(e) => onClick(e, project.title, project.id)}>
                     <motion.img src={`assets/img/writing/${project.imageURL}`} className='writing-project-image'/>
                     <motion.div className='writing-project-overlay'/>
                 </motion.div>
-                <motion.div className='writing-project-node-info' onClick={(e) => readProject(e, project.title, project.id)}>
+                <motion.div className='writing-project-node-info' onClick={(e) => onClick(e, project.title, project.id)}>
                     <motion.h1 className='writing-project-node-title'>{project.title}</motion.h1>
                     <motion.h2 className='writing-project-node-genres'>{genreString}</motion.h2>
                 </motion.div>
@@ -324,6 +324,92 @@ const WritingProjects = () => {
         </StaticReveal>
     );
 }
+
+const WritingOverlay = ({open, onClick, project}) => {
+    // Create an internal function for opening the writing in another page 
+    const openWriting = (e) => {
+        window.open(`assets/writing/${project.src}`, '_blank');
+    }
+
+    // Check if the overlay is open
+    if(open) {
+        // Return a component if so
+        return (
+            <Fade id='writing-overlay' visibleOpacity={0.95} animationDuration={0.5}>
+                <motion.div className='overlay-exit-button'
+                    onClick={(e) => onClick(e, null, null)}>
+                    <FontAwesomeIcon icon={faX} className='overlay-exit-icon'/>
+                </motion.div>
+                <motion.div className='writing-project-overlay-info'>
+                    <motion.h1 className='writing-project-overlay-title'>
+                        {project.title}
+                    </motion.h1>
+                    <motion.h2 className='writing-project-overlay-type'>
+                        {project.type}
+                    </motion.h2>
+                    <motion.div className='writing-project-overlay-image'>
+                        <motion.div className='writing-project-image-details'>
+                            <motion.img src={`assets/img/writing/${project.imageURL}`} alt={project.title}/>
+                            <motion.p className='writing-project-overlay-image-attribution'>{project.imageAttribution}</motion.p>
+                        </motion.div>
+                    </motion.div>
+                    <motion.h2 className='writing-project-overlay-genres'>
+                        {project.genres.join(', ')}
+                    </motion.h2>
+                    <motion.div className='writing-project-overlay-about'>
+                        {project.about.map((text, index) => (
+                            <motion.span key={index}>
+                                {text}
+                                {index < project.about.length - 1 && (<><br /> <br /></>)}
+                            </motion.span>
+                        ))}    
+                    </motion.div>
+                    <motion.div className='writing-project-overlay-src' onClick={(e) => openWriting(e)}>
+                        <motion.h1 className='writing-project-overlay-src-content'>READ</motion.h1>
+                    </motion.div>
+                </motion.div>
+            </Fade>
+        )
+    } else {
+        return;
+    }
+}
+
+const WritingProjects = () => {
+    const [open, setOpen] = useState(false);
+    const [currentTitle, setCurrentTitle] = useState("");
+    const [currentID, setCurrentID] = useState(0);
+    const [project, setProject] = useState({});
+
+    useEffect(() => {
+        const loadProjectFromServer = async () => {
+            const response = await fetch(`/getWritingProject?title=${currentTitle}&id=${currentID}`);
+            const data = await response.json();
+            setProject(data.project);
+        }
+
+        if(currentTitle == null || !currentID == null) return;
+
+        loadProjectFromServer();
+
+        console.log(project);
+    }, [open]);
+
+    const toggleOverlay = (e, projectTitle, projectID) => {
+        setOpen(!open);
+        setCurrentTitle(projectTitle);
+        setCurrentID(projectID);
+    };
+
+    return (
+        <>
+        <WritingProjectsList onClick={toggleOverlay} />
+        <WritingOverlay open={open} onClick={toggleOverlay} project={project}/>
+        </>
+    )
+}
+
+
 
 const Content = () => {
     return (

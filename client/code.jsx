@@ -48,7 +48,7 @@ const Content = () => {
                 onClick={() => window.open(`${project.downloadURL}`)}
                 >
                     <motion.div className='project-download-content'>
-                        <motion.h1>Download</motion.h1>
+                        <motion.h1>DOWNLOAD</motion.h1>
                     </motion.div>
                 </motion.div>
             }

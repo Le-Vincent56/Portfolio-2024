@@ -8,13 +8,29 @@ const WritingSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    type: {
+        type: String,
+        required: true,
+    },
     genres: {
+        type: [String],
+        required: true,
+    },
+    about: {
         type: [String],
         required: true,
     },
     imageURL: {
         type: String,
-        trim: true
+        trim: true,
+    },
+    imageAttribution: {
+        type: String,
+        required: false,
+    },
+    src: {
+        type: String,
+        required: true,
     },
     id: {
         type: Number,

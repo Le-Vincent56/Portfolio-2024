@@ -14,6 +14,8 @@ const router = (app) =>
     app.get('/getCodePage', controllers.Code.getCodePage);
     app.get('/codeProject', controllers.Code.loadCodePage);
     app.get('/getCodeProject', controllers.Code.getCodeProject);
+
+    app.get('/getWritingProject', controllers.Writing.getWritingProject);
 }
 
 module.exports = router;
