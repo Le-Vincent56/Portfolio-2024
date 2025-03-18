@@ -221,6 +221,7 @@ body::-webkit-scrollbar-thumb:hover {
   flex-direction: column;
   justify-content: start;
   min-height: 12.5rem;
+  gap: 2rem;
 }
 #code-projects .code-project-node {
   position: relative;
