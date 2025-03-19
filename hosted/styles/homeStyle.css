@@ -512,7 +512,8 @@ body::-webkit-scrollbar-thumb:hover {
   column-gap: 1.8519em;
   row-gap: 3.7037em;
   align-items: start;
-  min-height: 400px;
+  min-height: 14.8em;
+  max-height: 14.8em;
   margin-bottom: 100px;
 }
 #audio-projects-list .audio-project-node {
@@ -714,7 +715,7 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: 1.875rem;
   position: absolute;
   width: 100%;
-  height: auto;
+  height: 100%;
   background-color: black;
   left: 0;
   top: 0;
